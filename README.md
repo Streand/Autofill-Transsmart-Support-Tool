@@ -5,7 +5,7 @@ Automatically fills in your username and password when the Support Tool login wi
 ## Setup Instructions
 
 1. **Install Python** (if not already installed):
-   - Download from https://www.python.org/downloads/
+   - Download from https://www.python.org/downloads/release/python-31018/
    - **IMPORTANT**: Check "Add Python to PATH" during installation
 
 
