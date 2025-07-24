@@ -8,17 +8,14 @@ Automatically fills in your username and password when the Support Tool login wi
    - Download from https://www.python.org/downloads/
    - **IMPORTANT**: Check "Add Python to PATH" during installation
 
-2. **Run setup**:
-   - Double-click `setup.bat`
-   - This will create your credentials file
 
-3. **Configure your credentials**:
+2. **Configure your credentials**:
    - Open `credentials.json`
    - Replace `YOUR_USERNAME_HERE` with your username
    - Replace `YOUR_PASSWORD_HERE` with your password
    - Save the file
 
-4. **Start the autofill service**:
+3. **Start the autofill service**:
    - Double-click `autofill_support_tool.bat`
    - Keep this window open while working
    - The script will automatically fill your credentials whenever the Support Tool login appears
