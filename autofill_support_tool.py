@@ -24,10 +24,15 @@ ensure_venv()
 
 def load_credentials():
     credentials_file = os.path.join(os.path.dirname(__file__), "credentials.json")
+    print(f"DEBUG: Looking for credentials at: {credentials_file}")  # Debug line
     try:
         with open(credentials_file, 'r') as f:
             creds = json.load(f)
-            return creds.get("username"), creds.get("password")
+            username = creds.get("username")
+            password = creds.get("password")
+            print(f"DEBUG: Loaded username: {username}")  # Debug line
+            print(f"DEBUG: Password length: {len(password) if password else 0}")  # Debug line
+            return username, password
     except FileNotFoundError:
         print("Error: credentials.json file not found!")
         return None, None
@@ -59,6 +64,8 @@ def wait_for_window_to_disappear(title, timeout=30):
 def autofill():
     if not USERNAME or not PASSWORD:
         print("Credentials not loaded. Please check credentials.json file.")
+        print(f"DEBUG: USERNAME = {USERNAME}")  # Debug line
+        print(f"DEBUG: PASSWORD = {PASSWORD}")  # Debug line
         return False
         
     # Silently check for window (no print while waiting)
@@ -67,6 +74,7 @@ def autofill():
         return False  # No print, just return False
     
     print("Support tool started, Filling credentials")
+    print(f"DEBUG: About to type username: {USERNAME}")  # Debug line
     win.activate()
     time.sleep(0.5)
     
