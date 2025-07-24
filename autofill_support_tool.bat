@@ -1,58 +1,51 @@
 @echo off
 cd /d "%~dp0"
 
-REM Set window title
-title Autofill Transsmart Support Tool - Auto Monitor
+title Autofill Transsmart Support Tool
 
-REM Display header
 echo =========================================
 echo    Autofill Transsmart Support Tool
-echo         Auto Monitor Mode
 echo =========================================
 echo.
 
-REM Check if virtual environment exists, if not create it
 if not exist "venv\" (
-    echo Creating virtual environment...
+    echo Setting up environment...
     python -m venv venv
 )
 
-REM Activate virtual environment
 call venv\Scripts\activate.bat
-
-REM Install requirements if needed (hide output)
 pip install -r requirements.txt --quiet --disable-pip-version-check > nul 2>&1
 
-REM Start monitoring
-echo Starting automatic monitoring...
-echo Monitoring for "Transsmart Support.exe" process...
-echo This window will stay minimized and run in background.
+echo Starting monitor service...
+echo Waiting for Transsmart Support Tool...
 echo.
 
-REM Initialize variables
 set "autofill_running=false"
+set "last_status=unknown"
 
 :monitor_loop
-REM Check if Transsmart Support Tool is running
 tasklist /FI "IMAGENAME eq Transsmart Support.exe" 2>NUL | find /I "Transsmart Support.exe" >NUL
 
 if %ERRORLEVEL%==0 (
-    REM Process is running
     if "%autofill_running%"=="false" (
-        echo [%DATE% %TIME%] Transsmart Support Tool detected! Starting autofill...
+        echo [%TIME%] Process detected - Starting autofill service
         set "autofill_running=true"
+        set "last_status=running"
     )
-    REM Run autofill silently
-    python autofill_support_tool.py >NUL 2>&1
+    python autofill_support_tool.py
 ) else (
-    REM Process is not running
     if "%autofill_running%"=="true" (
-        echo [%DATE% %TIME%] Transsmart Support Tool closed. Stopping autofill...
+        echo [%TIME%] Process stopped - Autofill service disabled
         set "autofill_running=false"
+        set "last_status=stopped"
+    ) else (
+        if not "%last_status%"=="waiting" (
+            echo [%TIME%] Monitoring for Transsmart Support Tool...
+            set "last_status=waiting"
+        )
     )
 )
 
-REM Wait 3 seconds before checking again
 timeout /t 3 /nobreak >nul
 goto monitor_loop
 
