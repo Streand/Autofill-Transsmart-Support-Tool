@@ -1,6 +1,6 @@
 # Support Tool Autofill
 
-Automatically fills in your username and password when the Support Tool login window appears.
+Automatically fills in your username and password when the Transsmart Support Tool login window appears.
 
 ## Setup Instructions
 
@@ -10,23 +10,52 @@ Automatically fills in your username and password when the Support Tool login wi
 
 
 2. **Configure your credentials**:
-   - Open `credentials.json`
-   - Replace `YOUR_USERNAME_HERE` with your username
-   - Replace `YOUR_PASSWORD_HERE` with your password
+   - Edit `credentials.json` with your actual username and password
    - Save the file
 
 3. **Start the autofill service**:
    - Double-click `autofill_support_tool.bat`
-   - Keep this window open while working
-   - The script will automatically fill your credentials whenever the Support Tool login appears
+   - The service will automatically monitor for the Transsmart Support Tool
+   - When the tool starts, autofill will activate automatically
+   - Keep the command window open while working
+
+4. **Optional: Auto-Start with Windows**:
+   - Right-click `setup_startup.ps1` → "Run with PowerShell"
+   - This will add the autofill service to Windows startup
+   - The service will run minimized on every boot
+   - To remove later, run `remove_startup.ps1`
+
+## How It Works
+
+- Monitors for "Transsmart Support.exe" process
+- Automatically detects when Support Tool login window appears
+- Fills credentials and waits for successful login
+- Continues monitoring for subsequent logins
 
 ## Files
 
-- `autofill_support_tool.py` - Main script
-- `autofill_support_tool.bat` - Launcher (creates virtual environment automatically)
-- `setup.bat` - One-time setup
-- `credentials.json` - Your username/password (created by setup)
+- `autofill_support_tool.py` - Main autofill script
+- `autofill_support_tool.bat` - Process monitor and launcher
+- `credentials.json` - Your username/password configuration
 - `requirements.txt` - Python dependencies
+- `setup_startup.ps1` - Add to Windows startup (optional)
+- `remove_startup.ps1` - Remove from Windows startup (optional)
+
+## Auto-Start Management
+
+**To enable auto-start:**
+```powershell
+Right-click setup_startup.ps1 → "Run with PowerShell"
+```
+
+**To disable auto-start:**
+```powershell
+Right-click remove_startup.ps1 → "Run with PowerShell"
+```
+
+**Manual check:**
+- Press `Win + R` → type `shell:startup` → Enter
+- Look for "Autofill Transsmart Support Tool.lnk"
 
 ## Security Note
 
@@ -35,5 +64,13 @@ Your credentials are stored locally in `credentials.json`. Keep this file secure
 ## Troubleshooting
 
 - If Python is not found, make sure it's installed and added to PATH
-- If the autofill doesn't work, check that the window title is exactly "Support Tool Login"
+- If autofill doesn't work, verify the login window title is "Support Tool Login"
+- If process detection fails, check that "Transsmart Support.exe" is the correct process name
 - To stop the service, close the command window or press Ctrl+C
+- If startup scripts don't work, ensure PowerShell execution policy allows scripts
+
+## System Requirements
+
+- Windows OS
+- Python 3.6 or higher
+- Transsmart Support Tool application
