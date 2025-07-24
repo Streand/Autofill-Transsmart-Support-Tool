@@ -38,24 +38,19 @@ Automatically fills in your username and password when the Transsmart Support To
 - `autofill_support_tool.bat` - Process monitor and launcher
 - `credentials.json` - Your username/password configuration
 - `requirements.txt` - Python dependencies
-- `setup_startup.ps1` - Add to Windows startup (optional)
-- `remove_startup.ps1` - Remove from Windows startup (optional)
 
 ## Auto-Start Management
 
-**To enable auto-start:**
-```powershell
-Right-click setup_startup.ps1 → "Run with PowerShell"
-```
+**Method 1: Create Shortcut (Recommended)**
+1. Right-click `autofill_support_tool.bat` → "Create shortcut"
+2. Press `Win + R` → type `shell:startup` → Enter
+3. Move the shortcut into the Startup folder
+4. The service will start automatically on next boot
 
-**To disable auto-start:**
-```powershell
-Right-click remove_startup.ps1 → "Run with PowerShell"
-```
+**To remove from startup:**
+- Go to the Startup folder and delete the shortcut
 
-**Manual check:**
-- Press `Win + R` → type `shell:startup` → Enter
-- Look for "Autofill Transsmart Support Tool.lnk"
+**Note:** Don't copy the `.bat` file directly - use a shortcut instead so it can find the Python files.
 
 ## Security Note
 
