@@ -19,11 +19,6 @@ Automatically fills in your username and password when the Transsmart Support To
    - When the tool starts, autofill will activate automatically
    - Keep the command window open while working
 
-4. **Optional: Auto-Start with Windows**:
-   - Right-click `setup_startup.ps1` → "Run with PowerShell"
-   - This will add the autofill service to Windows startup
-   - The service will run minimized on every boot
-   - To remove later, run `remove_startup.ps1`
 
 ## How It Works
 
