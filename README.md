@@ -64,3 +64,14 @@ Your credentials are stored locally in `credentials.json`. Keep this file secure
 - Windows OS
 - Python 3.6 or higher
 - Transsmart Support Tool application
+
+## dependensies
+
+- pyautogui:
+A Python library used to automate mouse movements, clicks, keyboard presses, and GUI interactions. It lets you programmatically control the mouse and keyboard, take screenshots, and locate images on the screen.
+
+- pygetwindow:
+A Python library for programmatically finding, activating, resizing, moving, and closing application windows on your desktop. It allows you to manipulate windows by their titles or handles.
+
+- psutil:
+A cross-platform Python library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors). It is useful for system monitoring, profiling, and managing processes.
