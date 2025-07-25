@@ -36,7 +36,7 @@ Automatically fills in your username and password when the Transsmart Support To
 
 ## Auto-Start Management
 
-**Method 1: Create Shortcut (Recommended)**
+** Create Shortcut
 1. Right-click `autofill_support_tool.bat` → "Create shortcut"
 2. Press `Win + R` → type `shell:startup` → Enter
 3. Move the shortcut into the Startup folder
